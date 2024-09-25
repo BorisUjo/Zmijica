@@ -45,11 +45,11 @@ int main(void)
 
     float vertices[] =
     { //     COORDINATES     /  TEXTURE COORDS
-        -0.5f, 0.0f,  0.5f,     0.0f, 0.0f,
+        -0.5f, 0.0f,  0.5f,     0.0f, 1.0f,
         -0.5f, 0.0f, -0.5f,    1.0f, 0.0f,
-         0.5f, 0.0f, -0.5f,    1.0f, 1.0f,
+         0.5f, 0.0f, -0.5f,    0.0f, 1.0f,
          0.5f, 0.0f,  0.5f,    1.0f, 1.0f,
-         0.0f, 0.8f,  0.0f,    0.0f, 1.0f
+         0.0f, 0.8f,  0.0f,    1.0f, 1.0f
     };
 
     unsigned int indices[]
@@ -134,6 +134,7 @@ int main(void)
             if (currentTime - prevTime >= 1 / 60)
             {
                 rotation += 0.5f;
+                //rotation = 360 * sin(glfwGetTime());
                 prevTime = currentTime;
             }
 
@@ -142,6 +143,7 @@ int main(void)
             glm::mat4 view = glm::mat4(1.0f);
 
 
+            model = glm::translate(model, glm::vec3(0, 0, -5));
             model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
             view = glm::translate(view, glm::vec3(0.0, -0.5f, -2.0f));
             proj = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f);
