@@ -1,16 +1,24 @@
-#include "PackageManager.h"
+﻿#include "PackageManager.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void glfw_on_key_pressed_callback(GLFWwindow* window, int key, int scan, int action, int mods);
 void modify_player_position(int x, int y);
+// GLFW error callback
+void glfwErrorCallback(int error, const char* description) {
+    std::cout << "GLFW Error (" << error << "): " << description << std::endl;
+}
 
+// OpenGL debug output callback (requires OpenGL 4.3+)
+void APIENTRY glDebugOutput(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
+    std::cout << "OpenGL Debug Output: " << message << std::endl;
+}
 int playerDirX;
 int playerDirY;
 
 int main(void)
 {
     GLFWwindow* window;
-
+    glfwSetErrorCallback(glfwErrorCallback);
     /* Initialize the library */
     if (!glfwInit())
         return -1;
@@ -56,95 +64,104 @@ int main(void)
         3, 0, 4
     };
 
+    /*unsigned int indices[]
+    {
+        0,1,2,
+        2,3,0
+    };*/
+
 
     Shader shader = Shader::Parse("res/Basic.txt");
-
-    int width, height, comp;
     const char* filepath = "res/grb.png";
 
-    stbi_set_flip_vertically_on_load(1);
+    //stbi_set_flip_vertically_on_load(1);
 
-    unsigned char* img_data = stbi_load(filepath, &width, &height, &comp, 4);
+    //unsigned char* img_data = stbi_load(filepath, &width, &height, &comp, 4);
 
 
     // START
 
-    unsigned int vao, array_buffer_id;
-    unsigned int ebo;
-    unsigned int texture;
+    //unsigned int vao, array_buffer_id;
+    //unsigned int ebo;
+    //unsigned int texture;
 
 
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    //glGenVertexArrays(1, &vao);
+    //glBindVertexArray(vao);
 
 
 
-    glGenBuffers(1, &array_buffer_id);
-    glBindBuffer(GL_ARRAY_BUFFER, array_buffer_id);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    //glGenBuffers(1, &array_buffer_id);
+    //glBindBuffer(GL_ARRAY_BUFFER, array_buffer_id);
+    //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    //glVertexAttribPointer(0, 3, GL_FLOAT, false, 5 * sizeof(float), (void*)0); // ARRAY BUFFER
+    //glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
+    //glGenBuffers(1, &ebo);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    //glGenTextures(1, &texture);
+    //glBindTexture(GL_TEXTURE_2D, texture);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data);
 
-    glVertexAttribPointer(1, 2, GL_FLOAT, false, 4 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+    //glVertexAttribPointer(1, 2, GL_FLOAT, false, 4 * sizeof(float), (void*)(3 * sizeof(float)));
+    //glEnableVertexAttribArray(1);
 
     // END
+
+    VertexArrayObject vao;
+    vao.Bind();
+    vao.BufferData(vao.m_arrayBufferID,GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    vao.VertexAttribPointer(0, 3, GL_FLOAT, false, 5 * sizeof(float), (void*)0);
+    vao.BufferData(vao.m_elementArrayID,GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    vao.VertexAttribPointer(1, 2, GL_FLOAT, false, 4 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    vao.TextureData(filepath);
+
+
 
     int uniform = glGetUniformLocation(shader.GetShaderID(), "u_Texture");
     glUniform1i(uniform, 0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+  /*  glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);*/
 
     float rotation = 0.0f;
     double prevTime = glfwGetTime();
 
-    glEnable(GL_DEPTH_TEST);
-    std::cout << "INIT TEST " << glGetError() << "\n";
+    //glEnable(GL_DEPTH_TEST);
+    /*std::cout << "INIT TEST " << glGetError() << "\n";*/
 
+    // 1282 - error code 
 
+    glGetError();
 
-    if (img_data)
-    {
-        stbi_image_free(img_data);
-    }
-    
-
-
-
-/*
-*_   _  _____ ______   ___   _____  _____
-| | | || ___ \|  _  \ / _ \ |_   _||  ___|
-| | | || |_/ /| | | |/ /_\ \  | |  | |__  
-| | | ||  __/ | | | ||  _  |  | |  |  __| 
-| |_| || |    | |/ / | | | |  | |  | |___ 
- \___/ \_|    |___/  \_| |_/  \_/  \____/ 
-                                          
-*/
+    /* ╔───────────────────────────────────────────╗ */
+    /* │                                           │ */
+    /* │  _   _  ____   ____     _   _____  _____  │ */
+    /* │ | | | ||  _ \ |  _ \   / \ |_   _|| ____| │ */
+    /* │ | | | || |_) || | | | / _ \  | |  |  _|   │ */
+    /* │ | |_| ||  __/ | |_| |/ ___ \ | |  | |___  │ */
+    /* │  \___/ |_|    |____//_/   \_\|_|  |_____| │ */
+    /* │                                           │ */
+    /* ╚───────────────────────────────────────────╝ */
 
     const float PLAYER_SPEED = 2;
     float playerPosX = 0.0f;
     float playerPosY = 0.0f;
 
+    glEnable(GL_DEPTH);
+
     double oldStartTime = 0;
-    
     while (!glfwWindowShouldClose(window))
     {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -170,7 +187,7 @@ int main(void)
         playerPosX += playerDirX * PLAYER_SPEED * deltaTime;
         playerPosY += playerDirY * PLAYER_SPEED * deltaTime;
 
-        std::cout << playerPosX << "\n";
+        //std::cout << playerPosX << "\n";
 
         model = glm::translate(model, glm::vec3(playerPosX, playerPosY, -5));
         model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -186,12 +203,12 @@ int main(void)
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
 
-        glBindVertexArray(vao);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
 
-        //glDrawArrays(GL_TRIANGLES, 0, 3);
+        ///////////////////////////////////////////////////////////////////////////////////////////// BIND CALL
+
+        vao.Bind();
         glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
+        vao.Unbind();
 
         glfwSwapBuffers(window);
 

@@ -1,4 +1,4 @@
 ﻿  Application.cpp
-C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(174,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(175,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(187,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(188,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   3D_OpenGL_Test.vcxproj -> C:\Users\boris\source\Boban C++\3D_OpenGL_Test\x64\Debug\3D_OpenGL_Test.exe

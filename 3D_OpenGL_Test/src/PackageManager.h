@@ -1,5 +1,6 @@
 #pragma once
 #include "Glfw_Packages.h"
+#include "VertexArrayObject.h"
 #include "Shader.h"
 #include "Player.h"
 #include <fstream>
