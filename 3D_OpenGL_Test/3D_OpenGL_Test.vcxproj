@@ -19,19 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Cell.cpp" />
+    <ClCompile Include="src\Color.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\SnakeGame.cpp" />
+    <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\VertexArrayObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Cell.h" />
+    <ClInclude Include="src\Color.h" />
+    <ClInclude Include="src\GameConstants.h" />
     <ClInclude Include="src\Glfw_Packages.h" />
     <ClInclude Include="src\PackageManager.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\SnakeGame.h" />
     <ClInclude Include="src\stb_image.h" />
+    <ClInclude Include="src\Time.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\VertexArrayObject.h" />
   </ItemGroup>
@@ -43,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\Basic.txt" />
+    <Text Include="res\PlaneShader.txt" />
+    <Text Include="res\PreviousProg.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

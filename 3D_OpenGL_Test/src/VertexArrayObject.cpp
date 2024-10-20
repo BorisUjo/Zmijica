@@ -1,9 +1,9 @@
 #include "VertexArrayObject.h"
-#include "Glfw_Packages.h"
-#include "stb_image.h"
 VertexArrayObject::VertexArrayObject(unsigned int SHADER_PROGRAM)
 {
-	
+
+	std::cout << "[VAO CONSTRUCTOR] : Initiliasing VAO" << std::endl;
+
 	m_shaderID = SHADER_PROGRAM;
 
 	glGenVertexArrays(1, &m_vertexArrayID);
@@ -13,9 +13,21 @@ VertexArrayObject::VertexArrayObject(unsigned int SHADER_PROGRAM)
 	glGenBuffers(1, &m_textureID);
 
 }
+VertexArrayObject::VertexArrayObject()
+{
 
+	std::cout << "[VAO CONSTRUCTOR] : VAO init...." << std::endl;
+
+	glGenVertexArrays(1, &m_vertexArrayID);
+
+	glGenBuffers(1, &m_arrayBufferID);
+	glGenBuffers(1, &m_elementArrayID);
+	glGenBuffers(1, &m_textureID);
+}
 VertexArrayObject::~VertexArrayObject()
 {
+
+	std::cout << "[VAO] : Destroying VAO" << std::endl;
 
 	// memory fuckup possible below
 
@@ -33,7 +45,7 @@ void VertexArrayObject::VertexAttribPointer(GLuint index, GLuint size, GLenum ty
 
 void VertexArrayObject::BufferData(GLuint id,GLenum target, GLsizeiptr size, const void* data, GLenum usage)
 {
-	std::cout << "Buffer Data sjeban? | ID: " << id << "| TARGET:  " << target << std::endl;
+	//std::cout << "Buffer Data sjeban? | ID: " << id << "| TARGET:  " << target << std::endl;
 	
 	glBindBuffer(target, id);
 	glBufferData(target, size, data, usage);
@@ -87,9 +99,8 @@ void VertexArrayObject::ResetMatrices()
 
 void VertexArrayObject::ParseMatrices()
 {
-
 	view_matrix = glm::translate(view_matrix, glm::vec3(0.0, -0.5f, -4.0f));
-	proj_matrix = glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f);
+	proj_matrix = glm::perspective(glm::radians(45.0f), (800.0f / 600.0f), 0.1f, 100.0f);
 
 
 	int modelLoc = glGetUniformLocation(m_shaderID, "model");
@@ -105,12 +116,39 @@ void VertexArrayObject::ParseMatrices()
 void VertexArrayObject::Bind()
 {
 	glBindVertexArray(m_vertexArrayID);
-	glBindTexture(GL_TEXTURE_2D,m_textureID);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementArrayID);
+	//glBindTexture(GL_TEXTURE_2D,m_textureID);
 }
 
 void VertexArrayObject::Unbind()
 {
 	glBindVertexArray(0); 
+}
+
+void VertexArrayObject::SetColor(float r, float g, float b)
+{
+	m_objectColor.R = r;
+	m_objectColor.G = g;
+	m_objectColor.B = b;
+
+	glUniform1f(glGetUniformLocation(m_shaderID, "R"), r);
+	glUniform1f(glGetUniformLocation(m_shaderID, "G"), g);
+	glUniform1f(glGetUniformLocation(m_shaderID, "B"), b);
+	glUniform1f(glGetUniformLocation(m_shaderID, "A"), 1.0f);
+
+}
+
+void VertexArrayObject::SetColor(float r, float g, float b, float alpha)
+{
+	m_objectColor.R = r;
+	m_objectColor.G = g;
+	m_objectColor.B = b;
+	m_objectColor.A = alpha;
+}
+
+void VertexArrayObject::SetShaderID(unsigned int shader_id)
+{
+	m_shaderID = shader_id;
 }
 
 void VertexArrayObject::SetPos(Vector pos)

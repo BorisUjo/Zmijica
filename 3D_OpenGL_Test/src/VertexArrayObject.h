@@ -1,5 +1,6 @@
 #pragma once
 #include "Glfw_Packages.h"
+#include "stb_image.h"
 #include <iostream>
 #include "Vector.h"
 
@@ -19,30 +20,33 @@
 class VertexArrayObject
 {
 public:
-	GLuint m_vertexArrayID;
-	GLuint m_arrayBufferID;
-	GLuint m_elementArrayID;
-	GLuint m_textureID;
+	GLuint m_vertexArrayID = -1;
+	GLuint m_arrayBufferID = -1;
+	GLuint m_elementArrayID = -1;
+	GLuint m_textureID = -1;
 	
 	Vector m_position = Vector(0,0);
 
 
 private:
-	int m_textureWidth;
-	int m_textureHeight;
-	int m_textureComp;
+	int m_textureWidth = 0;
+	int m_textureHeight = 0;
+	int m_textureComp = 0;
 
-	GLuint m_shaderID;
+	Color m_objectColor;
 
-	glm::mat4 model_matrix;
-	glm::mat4 proj_matrix;
-	glm::mat4 view_matrix;
+	GLuint m_shaderID = -1;
 
-	unsigned char* texture_data;
+	glm::mat4 model_matrix = glm::mat4(1.0f);
+	glm::mat4 proj_matrix = glm::mat4(1.0f);
+	glm::mat4 view_matrix = glm::mat4(1.0f);
+
+	unsigned char* texture_data = nullptr;
 
 
 public:
 	VertexArrayObject(unsigned int SHADER_PROGRAM);
+	VertexArrayObject();
 	~VertexArrayObject();
 	void VertexAttribPointer(GLuint index, GLuint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
 	void BufferData(GLuint id,GLenum target, GLsizeiptr size, const void* data, GLenum usage);
@@ -54,6 +58,9 @@ public:
 	void ParseMatrices();
 	void Bind();
 	void Unbind();
+	void SetColor(float r, float g, float b);
+	void SetColor(float r, float g, float b, float alpha);
+	void SetShaderID(unsigned int shader_id);
 	GLuint GetShaderID();
 
 	void SetPos(Vector pos);

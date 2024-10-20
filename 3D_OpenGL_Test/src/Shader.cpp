@@ -86,7 +86,7 @@ Shader Shader::Parse(const char* filepath)
 
 Shader::~Shader()
 {
-
+    glDeleteProgram(m_shaderID);
 }
 
 void Shader::Use()

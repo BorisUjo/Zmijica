@@ -1,4 +1,20 @@
-﻿  Application.cpp
-C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(198,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Application.cpp(199,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Cell.cpp
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(36,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(36,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(36,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(46,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(47,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(58,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(59,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(108,19): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\Cell.cpp(109,19): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  SnakeGame.cpp
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\GameConstants.h(13,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\GameConstants.h(14,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(108,92): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(108,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(116,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(121,63): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(121,42): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
   3D_OpenGL_Test.vcxproj -> C:\Users\boris\source\Boban C++\3D_OpenGL_Test\x64\Debug\3D_OpenGL_Test.exe
