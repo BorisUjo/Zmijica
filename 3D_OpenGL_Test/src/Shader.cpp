@@ -4,6 +4,7 @@
 #include <fstream>
 
 
+
 Shader::Shader(const char* vertex_shader, const char* fragment_shader)
 {
 
@@ -51,6 +52,12 @@ Shader::Shader(std::string vertex_shader, std::string fragment_shader)
     glDeleteShader(fragID);
 
 }
+Shader::Shader()
+{
+    m_shaderID = -1;
+    std::cout << "[SHADER] : Generating empty shader class, this will fail... " << std::endl;
+}
+
 
 Shader Shader::Parse(const char* filepath)
 {

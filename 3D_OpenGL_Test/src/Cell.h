@@ -8,18 +8,21 @@ private:
 	VertexArrayObject m_objectRenderer;
 	int gridPosX = 0;
 	int gridPosY = 0;
+	Color m_colorProperty;
 
 public:
 	Cell(unsigned int shader_program);
+	Cell(const char* filepath);
 	~Cell();
 	void Render();
 	void Bind();
 	void Move(double deltaTime, float xDir, float yDir);
+	void SetCellColor(float r, float g, float b);
 	void GridMove(int xDir, int yDir);
-	void SetPos(float xPos, float yPos);
-	void GridSetPos(int xPos, int yPos);
+	void SetPos(int xPos, int yPos);
 
 public:
+	bool isFood = false;
 	float cellPosX = 0.0f;
 	float cellPosY = 0.0f;
 	unsigned int indices[6]

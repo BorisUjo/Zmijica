@@ -27,15 +27,17 @@ public:
 	
 	Vector m_position = Vector(0,0);
 
-
 private:
 	int m_textureWidth = 0;
 	int m_textureHeight = 0;
 	int m_textureComp = 0;
 
-	Color m_objectColor;
+	// ako m_shaderID nije jednak -1, znaci da objekt koristi shader program iz main funkcije
 
 	GLuint m_shaderID = -1;
+	Shader m_programShader;
+	Color m_objectColor;
+
 
 	glm::mat4 model_matrix = glm::mat4(1.0f);
 	glm::mat4 proj_matrix = glm::mat4(1.0f);
@@ -46,6 +48,7 @@ private:
 
 public:
 	VertexArrayObject(unsigned int SHADER_PROGRAM);
+	VertexArrayObject(Shader& shader);
 	VertexArrayObject();
 	~VertexArrayObject();
 	void VertexAttribPointer(GLuint index, GLuint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
@@ -61,6 +64,8 @@ public:
 	void SetColor(float r, float g, float b);
 	void SetColor(float r, float g, float b, float alpha);
 	void SetShaderID(unsigned int shader_id);
+	void SetShader(Shader shader);
+	void UseShaderProgram();
 	GLuint GetShaderID();
 
 	void SetPos(Vector pos);

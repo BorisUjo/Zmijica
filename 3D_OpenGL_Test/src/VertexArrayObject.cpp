@@ -1,7 +1,6 @@
 #include "VertexArrayObject.h"
 VertexArrayObject::VertexArrayObject(unsigned int SHADER_PROGRAM)
 {
-
 	std::cout << "[VAO CONSTRUCTOR] : Initiliasing VAO" << std::endl;
 
 	m_shaderID = SHADER_PROGRAM;
@@ -13,9 +12,21 @@ VertexArrayObject::VertexArrayObject(unsigned int SHADER_PROGRAM)
 	glGenBuffers(1, &m_textureID);
 
 }
+VertexArrayObject::VertexArrayObject(Shader& shader)
+{
+	std::cout << "[VAO CONSTRUCTOR] : Initiliasing VAO, generating new shader" << std::endl;
+
+	m_programShader = shader;
+	m_shaderID = m_programShader.GetShaderID();
+
+	glGenVertexArrays(1, &m_vertexArrayID);
+
+	glGenBuffers(1, &m_arrayBufferID);
+	glGenBuffers(1, &m_elementArrayID);
+	glGenBuffers(1, &m_textureID);
+}
 VertexArrayObject::VertexArrayObject()
 {
-
 	std::cout << "[VAO CONSTRUCTOR] : VAO init...." << std::endl;
 
 	glGenVertexArrays(1, &m_vertexArrayID);
@@ -100,13 +111,11 @@ void VertexArrayObject::ResetMatrices()
 void VertexArrayObject::ParseMatrices()
 {
 	view_matrix = glm::translate(view_matrix, glm::vec3(0.0, -0.5f, -4.0f));
-	proj_matrix = glm::perspective(glm::radians(45.0f), (800.0f / 600.0f), 0.1f, 100.0f);
-
-
+	//proj_matrix = glm::perspective(glm::radians(45.0f), (800.0f / 600.0f), 0.1f, 100.0f);
+	proj_matrix = glm::ortho(0.0f, 30.0f, 0.0f, 30.0f, 0.0f, 25.0f);
 	int modelLoc = glGetUniformLocation(m_shaderID, "model");
 	int viewLoc = glGetUniformLocation(m_shaderID, "view");
 	int projLoc = glGetUniformLocation(m_shaderID, "proj");
-
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view_matrix));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj_matrix));
@@ -116,8 +125,6 @@ void VertexArrayObject::ParseMatrices()
 void VertexArrayObject::Bind()
 {
 	glBindVertexArray(m_vertexArrayID);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementArrayID);
-	//glBindTexture(GL_TEXTURE_2D,m_textureID);
 }
 
 void VertexArrayObject::Unbind()
@@ -149,6 +156,26 @@ void VertexArrayObject::SetColor(float r, float g, float b, float alpha)
 void VertexArrayObject::SetShaderID(unsigned int shader_id)
 {
 	m_shaderID = shader_id;
+}
+
+void VertexArrayObject::SetShader(Shader shader)
+{
+	m_programShader = Shader(shader);
+	std::cout << m_programShader.GetShaderID();
+	std::cout << 2;
+}
+
+void VertexArrayObject::UseShaderProgram()
+{
+	if (m_programShader.GetShaderID() == -1)
+	{
+		return;
+	}
+
+	std::cout << m_programShader.GetShaderID() << std::endl;
+
+	m_programShader.Use();
+
 }
 
 void VertexArrayObject::SetPos(Vector pos)

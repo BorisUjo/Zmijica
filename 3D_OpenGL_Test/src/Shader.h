@@ -7,6 +7,7 @@ class Shader
 public:
 	Shader(const char* vertex_shader, const char* fragment_shader);
 	Shader(std::string vertex_shader, std::string fragment_shader);
+	Shader();
 	static Shader Parse(const char* filepath);
 	~Shader();
 	void Use();
