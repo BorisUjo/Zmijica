@@ -1,2 +1,3 @@
-# OpenGL-Learning
- ucim ovaj kurac ne znam ni sam
+# Snake Game (Zmijica)
+Završni rad I. tehnička škola Tesla
+Library: openGL, glad
