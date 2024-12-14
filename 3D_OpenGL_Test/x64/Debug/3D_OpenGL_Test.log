@@ -1,2 +1,16 @@
-﻿  Application.cpp
+﻿  SnakeGame.cpp
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(93,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(113,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(115,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(115,44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(118,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(118,72): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(118,51): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(118,31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(120,64): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(120,43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(256,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(256,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(292,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\boris\source\Boban C++\3D_OpenGL_Test\3D_OpenGL_Test\src\SnakeGame.cpp(292,37): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   3D_OpenGL_Test.vcxproj -> C:\Users\boris\source\Boban C++\3D_OpenGL_Test\x64\Debug\3D_OpenGL_Test.exe
